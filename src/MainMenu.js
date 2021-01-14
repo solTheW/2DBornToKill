@@ -4,6 +4,7 @@ import StartGameView from './StartGameView.js';
 import OptionsView from './OptionsView';
 import Authors from './Authors';
 
+
 class MainMenu extends React.Component{
 constructor(props){
    super(props);
@@ -17,7 +18,6 @@ constructor(props){
    this.handleOptionsClick = this.handleOptionsClick.bind(this);
    this.handleAuthorsClick = this.handleAuthorsClick.bind(this);   
    }
-
    handleStartClick() {
    this.setState({showComponentStart:true, showComponentOptions:false,showComponentAuthors:false});
    }
@@ -27,7 +27,6 @@ constructor(props){
    handleAuthorsClick() {
       this.setState({showComponentAuthors:true,showComponentStart:false, showComponentOptions:false});
    }
-
    render(){
       return(
          <div>
