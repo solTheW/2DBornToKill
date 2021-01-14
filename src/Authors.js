@@ -19,6 +19,7 @@ class Authors extends React.Component {
                 <p>Patryk Włodarski
                 <a href="https://github.com/solTheW"><br />GitHub</a>
                 </p>
+                <br />
             </h1>
             </div>
         );
