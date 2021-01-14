@@ -3,6 +3,7 @@ import './MainMenu.css';
 import StartGameView from './StartGameView.js';
 import OptionsView from './OptionsView';
 import Authors from './Authors';
+import backgroudnMusic from './backgroundFiles/backgroundMusic.m4a';
 
 
 class MainMenu extends React.Component{
@@ -11,7 +12,8 @@ constructor(props){
    this.state = {
    showComponentStart : false,
    showComponentOptions : false,
-   showComponentAuthors : false
+   showComponentAuthors : false,
+   audioPlay : true
    };
 
    this.handleStartClick = this.handleStartClick.bind(this);
@@ -27,6 +29,11 @@ constructor(props){
    handleAuthorsClick() {
       this.setState({showComponentAuthors:true,showComponentStart:false, showComponentOptions:false});
    }
+   playMusic(){
+      return <audio autoPlay loop>
+               <source src={backgroudnMusic} type="audio/x-m4a" />
+      </audio>;
+   }
    render(){
       return(
          <div>
@@ -34,8 +41,9 @@ constructor(props){
          <button class="start-menu-button options" onClick={this.handleOptionsClick}>Options</button>
          <button class="start-menu-button authors" onClick={this.handleAuthorsClick}>Authors</button>
          {this.state.showComponentStart?<StartGameView />:null}
-         {this.state.showComponentOptions?<OptionsView />:null}
+         {this.state.showComponentOptions?<OptionsView audioPlay/>:null}
          {this.state.showComponentAuthors?<Authors />:null}
+         {this.playMusic()}
          </div>
       );
    }
