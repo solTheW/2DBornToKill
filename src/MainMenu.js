@@ -6,6 +6,7 @@ import Authors from './Authors';
 import backgroudnMusic from './backgroundFiles/backgroundMusic.m4a';
 
 
+
 class MainMenu extends React.Component{
 constructor(props){
    super(props);
@@ -13,12 +14,13 @@ constructor(props){
    showComponentStart : false,
    showComponentOptions : false,
    showComponentAuthors : false,
-   audioPlay : true
+   audioPlay : false
    };
 
    this.handleStartClick = this.handleStartClick.bind(this);
    this.handleOptionsClick = this.handleOptionsClick.bind(this);
-   this.handleAuthorsClick = this.handleAuthorsClick.bind(this);   
+   this.handleAuthorsClick = this.handleAuthorsClick.bind(this); 
+    this.handleSoundClick = this.handleSoundClick.bind(this);  
    }
    handleStartClick() {
    this.setState({showComponentStart:true, showComponentOptions:false,showComponentAuthors:false});
@@ -29,21 +31,32 @@ constructor(props){
    handleAuthorsClick() {
       this.setState({showComponentAuthors:true,showComponentStart:false, showComponentOptions:false});
    }
+   handleSoundClick() {
+      if(this.state.audioPlay){
+          this.setState({audioPlay : false});
+      }else{
+          this.setState({audioPlay : true});
+      }
+   }
    playMusic(){
-      return <audio autoPlay loop>
+      if(this.state.audioPlay){
+      return (
+         <audio autoPlay loop>
                <source src={backgroudnMusic} type="audio/x-m4a" />
-      </audio>;
+         </audio>
+         );
+      }
    }
    render(){
       return(
-         <div>
+         <div class="mainMenuDiv">
+         {this.playMusic()}
          <button class="start-menu-button start" onClick={this.handleStartClick}>Start Game</button>
          <button class="start-menu-button options" onClick={this.handleOptionsClick}>Options</button>
          <button class="start-menu-button authors" onClick={this.handleAuthorsClick}>Authors</button>
          {this.state.showComponentStart?<StartGameView />:null}
-         {this.state.showComponentOptions?<OptionsView audioPlay/>:null}
+         {this.state.showComponentOptions?<OptionsView action={this.handleSoundClick} audioPlay={this.audioPlay}/>:null}
          {this.state.showComponentAuthors?<Authors />:null}
-         {this.playMusic()}
          </div>
       );
    }
