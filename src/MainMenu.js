@@ -1,8 +1,8 @@
 import React from 'react';
 import './MainMenu.css';
-import StartGameView from './StartGameView.js';
-import OptionsView from './OptionsView';
-import Authors from './Authors';
+import StartGameView from './StartGame/StartGameView.js';
+import OptionsView from './Options/OptionsView.js';
+import Authors from './Authors/Authors.js';
 import backgroudnMusic from './backgroundFiles/backgroundMusic.m4a';
 
 

@@ -1,10 +1,15 @@
 import React from 'react';
+import './StartGameView.css';
+import Character from './Character/Character.js';
+
 
 class StartGameView extends React.Component {
+
     render () {
         return(
-            <div>
-            </div>
+        <div class="mainGameDiv">
+        <Character />
+        </div> 
         );
     }
 }

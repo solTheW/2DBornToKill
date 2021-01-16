@@ -1,6 +1,6 @@
 import React from 'react';
-import AdaPNG from './img/ada.jpg';
-import PatrykJPG from './img/patryk.jpg';
+import AdaPNG from '../img/ada.jpg';
+import PatrykJPG from '../img/patryk.jpg';
 import './Authors.css';
 class Authors extends React.Component {
     render () {
