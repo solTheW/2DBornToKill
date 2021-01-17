@@ -3,11 +3,13 @@ import Actor from './Actor.js';
 import useKeyPress from './hooks/use-key-press';
 import useWalk from './hooks/use-walk';
 import Enemy from './Enemy.js';
-
+import impactSound from '../../backgroundFiles/impact.mp3';
+import Cookies from 'js-cookie'
 
 var points=0;
 var xEnemy=200;
 var yEnemy=200;
+var impactAudio = new Audio(impactSound);
 
 export default function Player({skin, x, y}) {
     const { dir, step, walk, position } = useWalk(3)
@@ -15,7 +17,24 @@ export default function Player({skin, x, y}) {
         h: 32,
         w: 32,
     };
+    const [counter, setCounter] = React.useState(20);
     
+    function savePoints() {
+        let person = prompt("GREATE. Do you want to save your score", "Name");
+        if(person !== null && person !==""){
+            Cookies.set(points,person);
+        }
+        window.location.reload();
+    }
+
+    React.useEffect(() => {
+        if(counter <= 0) savePoints();
+        const timer =
+          counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+        return () => clearInterval(timer);
+      },[counter]);
+
+
     function randomXY() {
         ///z lewej 40
         ///z prawej window.inneeWidth-70
@@ -29,15 +48,19 @@ export default function Player({skin, x, y}) {
         yEnemy = Math.floor(Math.random()*(yMax - yMin +1))+yMin;
         return (<Enemy  x={xEnemy} y={yEnemy}/>);
     }
-
+    
     useKeyPress((e) =>{
         x=xEnemy;
         y=yEnemy;
-        if(position.x >= (x-32) && position.x <= (x+32) &&
+        if(e.key === ' '){
+            impactAudio.play();
+            if(position.x >= (x-32) && position.x <= (x+32) &&
             position.y >= (y-32) && position.y <= (y+32)  ){
             points+=100;
             randomXY();
+            setCounter(counter+2);
          }
+        }
          if(
                 e.key.replace("Arrow","").toLowerCase()==='left' || 
                 e.key.replace("Arrow","").toLowerCase()==='right' || 
@@ -47,9 +70,10 @@ export default function Player({skin, x, y}) {
         }
         e.preventDefault();
     })
+    
     return(
         <div>
-        <h1>{points}</h1>
+        <h1>{points}<br />{counter}</h1>
         <Enemy  x={xEnemy} y={yEnemy}/>
         <Actor sprite={skin} data={data} step={step} dir={dir} position={position}/>
         </div>);
