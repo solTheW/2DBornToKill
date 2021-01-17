@@ -11,8 +11,15 @@ export default function Player({skin}) {
     };
     
     useKeyPress((e) =>{
+        if(e.key === ' '){
+            
+        }else if(
+                e.key.replace("Arrow","").toLowerCase()==='left' || 
+                e.key.replace("Arrow","").toLowerCase()==='right' || 
+                e.key.replace("Arrow","").toLowerCase()==='up' ||
+                e.key.replace("Arrow","").toLowerCase()==='down'){
         walk(e.key.replace("Arrow","").toLowerCase());
-
+        }
         e.preventDefault();
     })
 

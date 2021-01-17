@@ -1,7 +1,7 @@
 import React from 'react';
 import Sprite from "./Sprite.js";
 
-export default function Actor({sprite, data, position = { x:0, y:0 }, step = 0, dir = 0}){
+export default function Actor({sprite, data, position = { x:200, y:200 }, step = 0, dir = 0}){
     const {h, w } = data;
     return(
         <Sprite 
