@@ -14,7 +14,7 @@ constructor(props){
    showComponentStart : false,
    showComponentOptions : false,
    showComponentAuthors : false,
-   audioPlay : false
+   audioPlay : true
    };
 
    this.handleStartClick = this.handleStartClick.bind(this);
