@@ -17,7 +17,7 @@ export default function Player({skin, x, y}) {
         h: 32,
         w: 32,
     };
-    const [counter, setCounter] = React.useState(20);
+    const [counter, setCounter] = React.useState(10);
     
     function savePoints() {
         let person = prompt("GREATE. Do you want to save your score", "Name");

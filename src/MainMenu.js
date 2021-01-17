@@ -12,7 +12,7 @@ constructor(props){
    super(props);
    this.state = {
    showComponentStart : false,
-   showComponentOptions : false,
+   showComponentOptions : true,
    showComponentAuthors : false,
    audioPlay : true
    };
