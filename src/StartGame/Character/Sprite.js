@@ -3,8 +3,8 @@ import React from 'react';
 export default function Sprite({image ,data, position}){
     const {y, x, h, w} = data;
     return (
-    <div
-    style={{
+    <div class='sprite'
+    style={{ 
         position:'absolute',
         top:position.y,
         left: position.x,
