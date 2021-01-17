@@ -1,4 +1,5 @@
 .mainGameDiv{
+    background-image: url(../backgroundFiles/grass_template2.jpg);
     border-style: double;
     width: 100%;
     height : 80vh;
